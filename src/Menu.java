@@ -83,7 +83,7 @@ public class Menu {
                 }
                 break;
             case 2: // Executor Solver
-            activeSolver = new ExecutorSolver();
+                activeSolver = new ExecutorSolver();
                 activeSolver.precompute();
 
                 System.out.println("\nWelcome to the Executor Factorizer!");
@@ -105,7 +105,26 @@ public class Menu {
                 }
                 break;
             case 3:
-                System.out.println("Solver not yet implemented");
+                activeSolver = new StreamSolver();
+                activeSolver.precompute();
+
+                System.out.println("\nWelcome to the Parallel Stream Factorizer!");
+                System.out.println("Please enter a number and we will return the factors of that number.");
+                System.out.println("We'll also tell you if it's prime. Enter 0 to return to the main menu.");
+
+                while (true) {
+                    System.out.print("Enter a number: ");
+                    int num = getChoice(scanner);
+                    if (num == 0) break;
+
+                    List<Integer> factors = activeSolver.getFactors(num);
+                    System.out.println("Factors of " + num + ": " + factors);
+                    if (factors.size() == 2 && factors.contains(1) && factors.contains(num)) {
+                        System.out.println(num + " is a prime number!");
+                    } else {
+                        System.out.println(num + " is not a prime.");
+                    }
+                }
                 break;
             case 4:
                 System.out.println("Solver not yet implemented");
